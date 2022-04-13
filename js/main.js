@@ -21,13 +21,13 @@ const data = {
     ],
     whatDo : {
       aboutTitle:  [
-          ['About me', 'Skils', 'Portfolio', 'гбо.рф', 'Test Movie APP', 'My GitHub:', 'Contacts'],['Обо мне','Навыки', 'Портфолио', 'гбо.рф', 'Тестовое приложение фильмов', 'Мой GitHub:', 'Контакты'],
+          ['About me', 'Skils', 'Portfolio', 'гбо.рф', 'Test Movie APP', 'Contacts'],['Обо мне','Навыки', 'Портфолио', 'гбо.рф', 'Тестовое приложение фильмов', 'Контакты'],
         ],
       descriptionTitle: [
         ["<span class='me-text'>Hello, I'm Ruslan - Frontend developer from Minsk. My journey into programming started with love. This means that I received all the knowledge, skills and experience on my own. By education, I am an Aviation Equipment Operations Engineer.</span>",
         '<span class="me-text2">Technologies that I know</span>', 'Unified platform for the NGV fuel market', 'Test application using mock API', 'Want to know more or just chat? You are welcome!'],
         ['<span class="me-text">Привет, я Руслан - Фронтенд  разработчик из Минска. Мой путь в программирование, начался с любовью. Это говорит то, что все знания, навыки и опыт я получал самостоятельно. По образованию я Инеженер по эксплуатации авиационного оборудования.</span>',
-        '<span class="me-text2">Технологии которыми я знаю</span>', 'Единая платформа рынка газомоторного топлива', 'Тестовое приложение с использованием ложного API', 'Хотите узнать больше или просто поболтать? Добро пожаловать!']
+        '<span class="me-text2">Технологии которые я знаю</span>', 'Единая платформа рынка газомоторного топлива', 'Тестовое приложение с использованием ложного API', 'Хотите узнать больше или просто поболтать? Добро пожаловать!']
       ]
     }
   }
@@ -44,7 +44,9 @@ const listNav = document.querySelector('.list-nav'),
       descriptionMe = document.querySelectorAll('.description-me'),
       imgJs = document.querySelector('.img-js > img'),
       blockCardsSkils = document.querySelector('.wrapper-block-skils'),
-      arrowTop = document.querySelector('.arrow-top');
+      arrowTop = document.querySelector('.arrow-top'),
+      dots = document.querySelectorAll('.dot'),
+      wrapperNavDots = document.querySelectorAll('.wrapper_nav_dots');
 
 data.navigation.nav[0].map((el, i) => {
   listNav.innerHTML += `<li class='list-item'><a class='link-nav' href="#${i}">${el}</a></li>`;
@@ -139,11 +141,11 @@ const arrImgURL2 =
 
 function ShowSlider (arrImgURL,index) {
   arrImgURL.forEach((el, i) => {
-    wrapperImg[index].innerHTML += `<img src=${el} alt=${i} />`;
+    wrapperImg[index].innerHTML += `<img class='img-slider' src=${el} alt=${i} />`;
   });
 }
 
-// const nav = (index) => {
+//nav slider
 buttonNav.forEach((el, i) => {
   el.addEventListener('click', (e) => {
     e.preventDefault();
@@ -162,13 +164,85 @@ buttonNav.forEach((el, i) => {
     }
   })
 })
-// }
-
-
 
 ShowSlider(arrImgURL1, 0);
 ShowSlider(arrImgURL2, 1);
 
+//dots toggle
+wrapperNavDots.forEach((el,index) => {
+  let indexOfShow = 0;
+  let indexOfShowSecond = 0;
+  el.addEventListener('click', (e) => {
+    if (e.currentTarget === wrapperNavDots[0]) {
+      //add and remove class
+      dots.forEach((item, k) => {
+        if(e.target === item) {
+          if (e.target.classList.contains('active')) {
+            return;
+          }
+          else {
+            for (let i = 0; i<= wrapperNavDots[0].children.length - 1; i++) {
+              wrapperNavDots[0].children[i].classList.remove('active')
+            }
+            item.classList.add('active');
+          }
+
+        }
+      })
+      // Show slider
+      dots.forEach((item, k) => {
+        if (e.target === item) {
+          if (indexOfShow == 0) {
+            wrapperImg[0].scrollLeft += wrapperImg[0].clientWidth * k;
+            indexOfShow = k;
+          } else if (indexOfShow > k) {
+            wrapperImg[0].scrollLeft -= wrapperImg[0].clientWidth * (indexOfShow - k);
+            indexOfShow = k;
+          } else {
+            wrapperImg[0].scrollLeft += wrapperImg[0].clientWidth * (k - indexOfShow);
+            indexOfShow = k;
+          }
+        }
+      })
+    }
+    if (e.currentTarget === wrapperNavDots[1]) {
+      //add and remove class
+
+      dots.forEach((item, k) => {
+        if(e.target === item) {
+          if (e.target.classList.contains('active')) {
+            return;
+          }
+        else {
+            for (let i = 0; i<= wrapperNavDots[1].children.length - 1; i++) {
+              indexOfShow = i;
+              wrapperNavDots[1].children[i].classList.remove('active')
+            }
+            item.classList.add('active');
+          }
+        }
+
+
+      })
+      // Show slider
+      dots.forEach((item, k) => {
+        if (e.target === item) {
+          let l = k - 4;
+          if (indexOfShowSecond == 0) {
+            wrapperImg[1].scrollLeft += wrapperImg[1].clientWidth * l;
+            indexOfShowSecond = l;
+          } else if (indexOfShowSecond > l) {
+            wrapperImg[1].scrollLeft -= wrapperImg[1].clientWidth * (indexOfShowSecond - l);
+            indexOfShowSecond = l;
+          } else {
+            wrapperImg[1].scrollLeft += wrapperImg[1].clientWidth * (l - indexOfShowSecond);
+            indexOfShowSecond = l;
+          }
+        }
+      })
+    }
+  })
+})
 
 //scroll top arrow
 arrowTop.addEventListener('click', () => {
@@ -189,6 +263,7 @@ button.addEventListener('click', () => {
 
 if(window.screen.width <= 600) {
   window.addEventListener('click', (e) => {
+    header.classList.contains('active') ? html.style.overflowY = 'hidden' : html.style.overflowY = 'scroll'
     linksNav.forEach(el => {
       if(e.target == el) {
         button.classList.toggle('active');
@@ -203,3 +278,5 @@ if(window.screen.width <= 600) {
     })
   })
 }
+
+
