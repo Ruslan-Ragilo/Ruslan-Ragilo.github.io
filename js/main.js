@@ -279,4 +279,91 @@ if(window.screen.width <= 600) {
   })
 }
 
+//add swiper
+
+wrapperImg.forEach((el, ind) => {
+  el.addEventListener("touchstart", handleTouchStart, false);
+  el.addEventListener('touchmove', handleTouchMove, false);
+  el.addEventListener('touchend', handleTouchend, false);
+
+  let x1 = null;
+  let y1 = null;
+
+  function handleTouchStart (e) {
+    const firstTouch = e.touches[0];
+    x1 = firstTouch.clientX;
+    y1 = firstTouch.clientY;
+  };
+
+  let xDiff;
+  let yDiff
+
+  function handleTouchMove (e) {
+    if (!x1 || !y1) {
+      return false;
+    }
+    let x2 = e.touches[0].clientX;
+    let y2 = e.touches[0].clientY;
+
+    xDiff = x2-x1;
+    yDiff = y2-y1;
+  }
+
+  function handleTouchend (e) {
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+      if(xDiff < 0) {
+        el.scrollLeft += el.clientWidth;
+        if (ind === 0) {
+          let i = 0;
+          for(i = 0; i < 3; i++) {
+            if (i < 4 && dots[i].classList.contains('active')) {
+              dots[i].classList.remove('active');
+              break;
+            }
+          }
+            dots[i+=1].classList.add('active');
+        }
+        if (ind === 1) {
+          for(i = 4; i < 7; i++) {
+            if (dots[i].classList.contains('active') && i > 3) {
+              dots[i].classList.remove('active');
+              break;
+            }
+          }
+          dots[i+=1].classList.add('active');
+        }
+      }
+      else {
+        el.scrollLeft -= el.clientWidth;
+        if (ind === 0) {
+          let i = 0;
+          for(i = 1; i < 4; i++) {
+            if (i < 4 && dots[i].classList.contains('active')) {
+              dots[i].classList.remove('active');
+              break;
+            }
+          }
+          if (!dots[0].classList.contains('active')) {
+            dots[i-=1].classList.add('active');
+          }
+        }
+        if (ind === 1) {
+          let i = 0;
+          for(i = 5; i < 8; i++) {
+            if (dots[i].classList.contains('active') && i > 4) {
+              dots[i].classList.remove('active');
+              break;
+            }
+          }
+          if (!dots[4].classList.contains('active')) {
+            dots[i-=1].classList.add('active');
+          }
+        }
+      }
+    }
+  };
+})
+
+
+
 
