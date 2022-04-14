@@ -469,10 +469,13 @@ img {
   }
 }
 
-@media screen and (max-width: 440px) {
+@media screen and (max-width: 500px) {
   .container-about-me {
     flex-direction: column-reverse;
     align-items: center;
+  }
+  .container-h-100vh {
+    height: 100vh!important;
   }
   .banner-me {
     flex-direction: column;
