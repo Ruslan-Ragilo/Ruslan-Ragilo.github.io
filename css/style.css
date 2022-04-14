@@ -474,9 +474,9 @@ img {
     flex-direction: column-reverse;
     align-items: center;
   }
-  .container-h-100vh {
+  /* .container-h-100vh {
     height: 100vh!important;
-  }
+  } */
   .banner-me {
     flex-direction: column;
   }
