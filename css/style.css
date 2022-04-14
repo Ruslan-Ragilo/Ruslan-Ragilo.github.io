@@ -437,10 +437,6 @@ img {
     z-index: 999;
   }
 
-  .banner-foto > img {
-    width: 200px;
-  }
-
   .wrapper_nav {
     width: 100vw;
     padding: 0;
@@ -474,16 +470,18 @@ img {
     flex-direction: column-reverse;
     align-items: center;
   }
-  /* .container-h-100vh {
+  .container-h-100vh {
     height: 100vh!important;
-  } */
+  }
   .banner-me {
     flex-direction: column;
   }
   .banner-foto {
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 100%;
+    height: 100vh;
   }
 
   .wrapper-info {
