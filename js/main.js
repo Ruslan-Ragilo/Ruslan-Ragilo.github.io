@@ -111,7 +111,11 @@ window.addEventListener("scroll", (e) =>  {
     imgJs.classList.remove('active')
   }
   // animation icon skils
-  if(e.target.body.childNodes[13].offsetTop - 100 < window.scrollY) {
+<<<<<<< HEAD
+  if(e.target.body.childNodes[13].offsetTop < window.scrollY) {
+=======
+  if(e.target.body.childNodes[13].offsetTop < window.scrollY) {
+>>>>>>> 8506a8a945a82b530774cb97211f869a90b0d729
     blockCardsSkils.classList.add('active');
   } else {
     blockCardsSkils.classList.remove('active')
