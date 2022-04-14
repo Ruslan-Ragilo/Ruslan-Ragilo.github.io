@@ -99,22 +99,24 @@ toggleLang.addEventListener('click', (e) => {
     }
   })
 })
-
+const body = document.querySelector('html');
 //animation
+
 window.addEventListener("scroll", (e) =>  {
+  console.log(e.target.body.childNodes)
   //animation icon js
-  if(e.target.body.childNodes[7].offsetTop - 100 < window.scrollY) {
+  if(e.target.body.childNodes[7].offsetTop < window.scrollY ) {
     imgJs.classList.add('active');
   } else {
     imgJs.classList.remove('active')
   }
-  //animation icon skils
-  if(e.target.body.childNodes[13].offsetTop - 100 < window.scrollY) {
-  blockCardsSkils.classList.add('active');
+  // animation icon skils
+  if(e.target.body.childNodes[13].offsetHeight < window.scrollY) {
+    blockCardsSkils.classList.add('active');
   } else {
     blockCardsSkils.classList.remove('active')
   }
-  //add arrow top
+  // add arrow top
   window.scrollY > 100 ? arrowTop.classList.add('active') : arrowTop.classList.remove('active')
 });
 
@@ -362,7 +364,5 @@ wrapperImg.forEach((el, ind) => {
     }
   };
 })
-
-
 
 
