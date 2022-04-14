@@ -111,7 +111,7 @@ window.addEventListener("scroll", (e) =>  {
     imgJs.classList.remove('active')
   }
   // animation icon skils
-  if(e.target.body.childNodes[13].offsetHeight < window.scrollY) {
+  if(e.target.body.childNodes[13].offsetTop < window.scrollY) {
     blockCardsSkils.classList.add('active');
   } else {
     blockCardsSkils.classList.remove('active')
