@@ -280,7 +280,6 @@ if(window.screen.width <= 600) {
 }
 
 //add swiper
-
 wrapperImg.forEach((el, ind) => {
   el.addEventListener("touchstart", handleTouchStart, false);
   el.addEventListener('touchmove', handleTouchMove, false);

@@ -329,9 +329,9 @@ img {
   display: none;
 }
 
-.dot:hover {
+/* .dot:hover {
   background-color:#9e5f5f;
-}
+} */
 
 .dot {
   width: 10px;
