@@ -184,13 +184,14 @@ li {
 }
 
 .img-js > img.active {
-  width: 330px;
-  height: 330px;
+  left: 0;
 }
 
 .img-js > img{
-  width: 0;
-  height: 0;
+  position: relative;
+  left: 100vw;
+  width: 330px;
+  height: 330px;
   transition: .5s;
 }
 
